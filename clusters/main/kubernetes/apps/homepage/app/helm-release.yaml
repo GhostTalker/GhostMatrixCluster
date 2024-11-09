@@ -1,0 +1,416 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.zinn.ca/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: homepage
+      version: 9.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 20m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    credentials:
+      s3:
+        type: s3
+        url: "${S3URL}"
+        bucket: "${S3PREFIX}-homepage"
+        accessKey: "${S3ID}"
+        secretKey: "${S3KEY}"
+        encrKey: "${S3KEY}"
+    persistence:
+      config:
+        volsync:
+          - name: config
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true
+            src:
+              enabled: true
+    addons:
+      codeserver:
+        enabled: true
+        service:
+          type: "LoadBalancer"
+          loadBalancerIP: "10.1.0.120"
+          ports:
+            codeserver:
+              port: 12321
+    ingress:
+      main:
+        enabled: true
+        primary: true
+        required: true
+        integrations:
+          traefik:
+            enabled: true
+            entrypoints:
+              - websecure
+          certManager:
+            enabled: true
+            certificateIssuer: domain-0-le-prod
+        hosts:
+          - host: homepage.ghostmatrix.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - homepage.ghostmatrix.me
+    configmap:
+      config:
+        enabled: true
+        data:
+          custom.js: ""
+          custom.css: ""
+          kubernetes.yaml: |
+            mode: cluster
+          settings.yaml: |
+            ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/settings
+
+            title: My Awesome Homepage
+            favicon: https://github.com/GhostTalker/icons/blob/main/Ghost/GhostTalker.jpg?raw=true
+
+            headerStyle: clean
+            #headerStyle: boxedWidgets
+
+            language: de
+
+            background:
+              image: https://wallpapers.com/images/featured/ipad-hintergrundbilder-mc9l1c9ubr1yr1dv.jpg
+              #blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+              saturate: 70 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+              brightness: 70 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+              opacity: 70 # 0-100
+
+            cardBlur: sm # sm, "", md, etc... see https://tailwindcss.com/docs/backdrop-blur
+
+            target: _blank # Possible options include _blank, _self, and _top
+
+            quicklaunch:
+              searchDescriptions: true
+              hideInternetSearch: true
+              hideVisitURL: true
+
+            showStats: true
+            statusStyle: "dot"
+
+            layout:
+              Kubernetes Apps:
+                style: row
+                columns: 4
+                #useEqualHeights: true
+              MadClusterNet Tools:
+                style: column
+                columns: 2
+                #useEqualHeights: true
+              UnownHash:
+                style: column
+                columns: 2
+                #useEqualHeights: true
+              Monitoring:
+                style: column
+                columns: 1
+                #useEqualHeights: true
+              Infrastructure:
+                style: row
+                columns: 3
+          widgets.yaml: |
+            ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/widgets
+
+            - kubernetes:
+                cluster:
+                  # Shows cluster-wide statistics
+                  show: true
+                  # Shows the aggregate CPU stats
+                  cpu: true
+                  # Shows the aggregate memory stats
+                  memory: true
+                  # Shows a custom label
+                  showLabel: true
+                  label: "cluster"
+                nodes:
+                  # Shows node-specific statistics
+                  show: true
+                  # Shows the CPU for each node
+                  cpu: true
+                  # Shows the memory for each node
+                  memory: true
+                  # Shows the label, which is always the node name
+                  showLabel: true
+            
+            - datetime:
+                locale: de
+                format:
+                  dateStyle: long
+                  timeStyle: long
+            
+            - weatherapi:
+                apiKey: "${WEATHER_API_KEY}"
+                label: "${HOME_LOC}"
+                latitude: "${HOME_LAT}"
+                longitude: "${HOME_LON}"
+                units: metric
+                cache: 5
+
+          services.yaml: |
+            ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/services
+            
+            - UnownHash:
+                - Dragonite:
+                    icon: https://static.wikia.nocookie.net/pokemonunite/images/a/a8/Dragonite_Art.png/revision/latest?cb=20211213143501
+                    href: "${MCAPP_DRAGONITE_URL}/"
+                    ping: "${MCAPP_DRAGONITE_URL}"
+                    description: Dragonite
+                - Dragonite Level Instanz:
+                    icon: https://static.wikia.nocookie.net/pokemonunite/images/a/a8/Dragonite_Art.png/revision/latest?cb=20211213143501
+                    href: "${MCAPP_DRAGONITE_DEV_URL}/"
+                    ping: "${MCAPP_DRAGONITE_DEV_URL}"
+                    description: Dragonite
+                - Rotom:
+                    icon: https://archives.bulbagarden.net/media/upload/3/37/0479Rotom.png
+                    href: "${MCAPP_ROTOM_URL}/"
+                    ping: "${MCAPP_ROTOM_URL}"
+                    description: Dragonite
+                - Koji:
+                    icon: "${MCAPP_KOJI_URL}/favicon.png"
+                    href: "${MCAPP_KOJI_URL}/login"
+                    ping: "${MCAPP_KOJI_URL}"
+                    description: Koji
+            
+            - Monitoring:
+                - Grafana:
+                    icon: https://stats.madcluster.net/public/img/grafana_icon.svg
+                    href: "${MCAPP_STATS_DASHBOARD_URL}"
+                    ping: "${MCAPP_STATS_URL}"
+                    description: Grafana
+                    widget:
+                        type: grafana
+                        url: "${MCAPP_STATS_URL}"
+                        username: "${MCAPP_STATS_USER}"
+                        password: "${MCAPP_STATS_PASS}"
+            
+            
+            - MadClusterNet Tools:
+                - Poracle:
+                    icon: https://raw.githubusercontent.com/KartulUdus/PoracleJS/images/starchy.svg?sanitize=true
+                    href: "${MCAPP_PORACLE_URL}/"
+                    ping: "${MCAPP_PORACLE_URL}"
+                    description: Poracle Bot
+                - GhostTalker PogoMap:
+                    icon: "${MCAPP_POGOMAP_URL}/favicon.ico"
+                    href: "${MCAPP_POGOMAP_URL}/login"
+                    ping: "${MCAPP_POGOMAP_URL}"
+                    description: MadClusterNet PogoMap 😎
+                - Genesect:
+                    icon: https://raw.githubusercontent.com/ReuschelCGN/pogoicons/main/tools/Genesect-FavIcon.png
+                    href: "${MCAPP_GENESECT_URL}/"
+                    ping: "${MCAPP_GENESECT_URL}"
+                    description: Genesect - ATV auto config management        
+                - Magneton:
+                    icon: https://github.com/GhostTalker/icons/blob/main/PoGo/favicon-Magneton.png?raw=true
+                    href: "${MCAPP_MAGNETON_URL}/status"
+                    ping: "${MCAPP_MAGNETON_URL}"
+                    description: Magneton ATV controller
+            
+            - Kubernetes Apps:
+              - Tandoor Recipe:
+                    icon: https://static-00.iconduck.com/assets.00/tandoor-icon-2048x2048-brlhbsbz.png
+                    href: "${APP_TANDOOR_URL}"
+                    description: Rezept Sammlung
+                    #namespace: tandoor-recipes # The kubernetes namespace the app resides in
+                    #app: tandoor-recipes # The name of the deployed app
+                    widget:
+                        type: tandoor
+                        url: "${APP_TANDOOR_URL}"
+                        key: "${APP_TANDOOR_APIKEY}"
+            
+            
+            - Infrastructure:
+                - Proxmox01 (GhostVM01, GhostVM02):
+                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                    href: "${HOME_PROXMOX_SERVER_01}:${HOME_PROXMOX_SERVER_PORT}"
+                    ping: "${HOME_PROXMOX_SERVER_01}"
+                    descrption: Proxmox GUI
+                    widget:
+                        type: proxmox
+                        url: "${HOME_PROXMOX_SERVER_01}:${HOME_PROXMOX_SERVER_PORT}"
+                        username: "${HOME_PROXMOX_USER}"
+                        password: "${HOME_PROXMOX_APIKEY}"
+                        node: proxmox01
+                - Proxmox02 (TalosWorker01):
+                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                    href: "${HOME_PROXMOX_SERVER_02}:${HOME_PROXMOX_SERVER_PORT}"
+                    ping: "${HOME_PROXMOX_SERVER_02}"
+                    descrption: Proxmox GUI
+                    widget:
+                        type: proxmox
+                        url: "${HOME_PROXMOX_SERVER_02}:${HOME_PROXMOX_SERVER_PORT}"
+                        username: "${HOME_PROXMOX_USER}"
+                        password: "${HOME_PROXMOX_APIKEY}"
+                        node: proxmox02
+                - Proxmox03 (TalosWorker02):
+                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                    href: "${HOME_PROXMOX_SERVER_03}:${HOME_PROXMOX_SERVER_PORT}"
+                    ping: "${HOME_PROXMOX_SERVER_03}"
+                    descrption: Proxmox GUI
+                    widget:
+                        type: proxmox
+                        url: "${HOME_PROXMOX_SERVER_03}:${HOME_PROXMOX_SERVER_PORT}"
+                        username: "${HOME_PROXMOX_USER}"
+                        password: "${HOME_PROXMOX_APIKEY}"
+                        node: proxmox03
+            
+                - TrueNAS scale:
+                    icon: https://tweakers.net/ext/i/2005515460.png
+                    href: "${HOME_TRUENAS_GUI}"
+                    ping: "${HOME_TRUENAS_URL}"
+                    description: TrueNAS scale
+                    widget:
+                        type: truenas
+                        url: "${HOME_TRUENAS_GUI}"
+                        key:  # not required if using username / password
+                        enablePools: true # optional, defaults to false
+                        nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+            
+                - DreamMaschinePro:
+                    icon: https://static-00.iconduck.com/assets.00/ubiquiti-icon-2048x2048-6s2pllvk.png
+                    href: https://unifi.ui.com/
+                    ping: "${HOME_UNIFI_URL}"
+                    description: Unifi DreamMaschine Pro
+                    widget:
+                        type: unifi
+                        url: "${HOME_UNIFI_URL}"
+                        username: "${HOME_UNIFI_USER}"
+                        password: "${HOME_UNIFI_PASS}"
+                        site:  # optional
+            
+                - PiHole:
+                    icon: https://static-00.iconduck.com/assets.00/pihole-icon-349x512-0hhcppg7.png
+                    href: "${HOME_PIHOLE_URL}"
+                    ping: "${HOME_PIHOLE_URL}"
+                    description: PiHole
+                    widget:
+                        type: pihole
+                        url: "${HOME_PIHOLE_URL}"
+                        version: 5 # required if running v6 or higher, defaults to 5
+                        key: "${HOME_PIHOLE_APIKEY}"
+            
+                - Nginx Proxy Manager:
+                    icon: https://i0.wp.com/www.sismonda.com.ar/wp-content/uploads/2021/04/icon.png?resize=192%2C192
+                    href: "${HOME_NPM_URL}/"
+                    ping: "${HOME_NPM_URL}"
+                    description: Nginx Proxy Manager 
+                    widget:
+                        type: npm
+                        url: "${HOME_NPM_URL}"
+                        username: "${HOME_NPM_USER}"
+                        password: "${HOME_NPM_PASS}"
+            
+                - Portainer:
+                    icon: https://getumbrel.github.io/umbrel-apps-gallery/portainer/icon.svg
+                    href: "${HOME_PORTAINER_URL}/"
+                    ping: "${HOME_PORTAINER_URL}"
+                    description: Docker Management
+                    widget:
+                        type: portainer
+                        url: "${HOME_PORTAINER_URL}"
+                        env: 3
+                        key: "${HOME_PORTAINER_APIKEY}"
+            
+                - PfSense MadClusterNet:
+                    icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTshC_syOD3OwilzZKDd0hKUDoEO5tcotTcyw&s
+                    href: "${MC_PFSENSE_URL}/"
+                    ping: "${MC_PFSENSE_URL}"
+                    description: Network and Security Management
+                    widget:
+                        type: pfsense
+                        url: "${MC_PFSENSE_URL}"
+                        username: "${MC_PFSENSE_USER}"
+                        password: "${MC_PFSENSE_PASS}"
+                        wan: vtnet0
+                        version: 2
+                        fields: ["load", "memory", "wanStatus"]
+
+          bookmarks.yaml: |
+            ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/bookmarks
+            
+            - Developer:
+                - Github:
+                    - abbr: GH
+                      icon: https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png
+                      href: https://github.com/
+                - Github Vmapper:
+                    - abbr: VM
+                      icon: https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png
+                      href: https://github.com/v-mapper
+                - Github UnownHash:
+                    - abbr: UH
+                      icon: https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png
+                      href: https://github.com/UnownHash
+                - Github GhostTalker:
+                    - abbr: GT
+                      icon: https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png
+                      href: https://github.com/GhostTalker
+            
+            - Social:
+                - Reddit:
+                    - abbr: RE
+                      icon: https://static.vecteezy.com/system/resources/previews/018/930/474/non_2x/reddit-logo-reddit-icon-transparent-free-png.png
+                      href: https://reddit.com/
+            
+            - Entertainment:
+                - YouTube:
+                    - abbr: YT
+                      icon: https://p7.hiclipart.com/preview/208/269/277/youtube-play-button-computer-icons-clip-art-youtube-thumbnail.jpg
+                      href: https://youtube.com/
+            
+            - TrueCharts:
+                - TrueCharts:
+                  - abbr: TC
+                    icon: https://truecharts.org/svg/favicon.svg
+                    href: https://truecharts.org
+                    description: "TrueCharts Website"
+                - Github:
+                  - abbr: GH
+                    icon: https://github.com/fluidicon.png
+                    href: https://github.com/truecharts
+                    description: "TrueCharts GitHub"
+                - Open Collective:
+                  - abbr: TC
+                    icon: https://opencollective.com/favicon.ico
+                    href: https://opencollective.com/truecharts
+                    description: "TrueCharts Open Collective"
+                - Discord:
+                  - abbr: DC
+                    icon: https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://discord.com&size=32
+                    href: https://truecharts.org/s/discord
+                    description: "TrueCharts Discord"
