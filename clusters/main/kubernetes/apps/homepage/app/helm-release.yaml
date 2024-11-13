@@ -37,16 +37,16 @@ spec:
         accessKey: "${S3ID}"
         secretKey: "${S3KEY}"
         encrKey: "${S3KEY}"
-#    persistence:
-#      config:
-#        volsync:
-#          - name: config
-#            type: restic
-#            credentials: s3
-#            dest:
-#              enabled: true
-#            src:
-#              enabled: true
+    persistence:
+      config:
+        volsync:
+          - name: config
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true
+            src:
+              enabled: true
     addons:
       codeserver:
         enabled: true
