@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - kubernetes-dashboard/ks.yaml
   - homepage/ks.yaml
+  - tandoor-recipes/ks.yaml
+
