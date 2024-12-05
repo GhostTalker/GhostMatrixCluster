@@ -87,11 +87,11 @@ spec:
             enabled: true
             certificateIssuer: domain-0-le-prod
         hosts:
-          - host: tandoor.ghostmatrix.me
+          - host: rezepte.ghostmatrix.me
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - tandoor.ghostmatrix.me
+              - rezepte.ghostmatrix.me
 
