@@ -39,40 +39,40 @@ nodes:
               gateway: ${GATEWAY}
           vip:
             ip: ${VIP}
-    - hostname: k8s-control-2
-      ipAddress: ${MASTER2IP}
-      controlPlane: true
-      nameservers:
-        - 10.1.0.222
-      installDiskSelector:
-        size: <= 1000GB
-      networkInterfaces:
-        # suffix is the adapter mac adres.
-        - interface: eth0
-          addresses:
-            - ${MASTER2IP}/24
-          routes:
-            - network: 0.0.0.0/0
-              gateway: ${GATEWAY}
-          vip:
-            ip: ${VIP}
-    - hostname: k8s-control-3
-      ipAddress: ${MASTER3IP}
-      controlPlane: true
-      nameservers:
-        - 10.1.0.222
-      installDiskSelector:
-        size: <= 1000GB
-      networkInterfaces:
-        # suffix is the adapter mac adres.
-        - interface: eth0
-          addresses:
-            - ${MASTER3IP}/24
-          routes:
-            - network: 0.0.0.0/0
-              gateway: ${GATEWAY}
-          vip:
-            ip: ${VIP}
+#    - hostname: k8s-control-2
+#      ipAddress: ${MASTER2IP}
+#      controlPlane: true
+#      nameservers:
+#        - 10.1.0.222
+#      installDiskSelector:
+#        size: <= 1000GB
+#      networkInterfaces:
+#        # suffix is the adapter mac adres.
+#        - interface: eth0
+#          addresses:
+#            - ${MASTER2IP}/24
+#          routes:
+#            - network: 0.0.0.0/0
+#              gateway: ${GATEWAY}
+#          vip:
+#            ip: ${VIP}
+#    - hostname: k8s-control-3
+#      ipAddress: ${MASTER3IP}
+#      controlPlane: true
+#      nameservers:
+#        - 10.1.0.222
+#      installDiskSelector:
+#        size: <= 1000GB
+#      networkInterfaces:
+#        # suffix is the adapter mac adres.
+#        - interface: eth0
+#          addresses:
+#            - ${MASTER3IP}/24
+#          routes:
+#            - network: 0.0.0.0/0
+#              gateway: ${GATEWAY}
+#          vip:
+#            ip: ${VIP}
     - hostname: k8s-worker-1
       ipAddress: ${WORKER1IP}
       nameservers:
