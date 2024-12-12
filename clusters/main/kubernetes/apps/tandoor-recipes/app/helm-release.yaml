@@ -63,15 +63,15 @@ spec:
               src:
                 enabled: true
 
-#    cnpg:
-#      main:
-#        #mode: recovery
-#        backups:
-#          enabled: true
-#          credentials: s3
-#        recovery:
-#          method: object_store
-#          credentials: s3
+    cnpg:
+      main:
+        #mode: recovery
+        backups:
+          enabled: true
+          credentials: s3
+        recovery:
+          method: object_store
+          credentials: s3
 
     ingress:
       main:
