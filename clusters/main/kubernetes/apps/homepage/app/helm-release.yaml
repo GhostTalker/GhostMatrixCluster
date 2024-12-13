@@ -228,11 +228,11 @@ spec:
                     href: "${MCAPP_POGOMAP_URL}/login"
                     ping: "${MCAPP_POGOMAP_URL}"
                     description: MadClusterNet PogoMap 😎
-                - Genesect:
-                    icon: https://raw.githubusercontent.com/ReuschelCGN/pogoicons/main/tools/Genesect-FavIcon.png
-                    href: "${MCAPP_GENESECT_URL}/"
-                    ping: "${MCAPP_GENESECT_URL}"
-                    description: Genesect - ATV auto config management        
+                #- Genesect:
+                #    icon: https://raw.githubusercontent.com/ReuschelCGN/pogoicons/main/tools/Genesect-FavIcon.png
+                #    href: "${MCAPP_GENESECT_URL}/"
+                #    ping: "${MCAPP_GENESECT_URL}"
+                #    description: Genesect - ATV auto config management        
                 - Magneton:
                     icon: https://github.com/GhostTalker/icons/blob/main/PoGo/favicon-Magneton.png?raw=true
                     href: "${MCAPP_MAGNETON_URL}/status"
@@ -255,94 +255,94 @@ spec:
             - Infrastructure:
                 - Proxmox01 (GhostVM01, GhostVM02):
                     icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${HOME_PROXMOX_SERVER_01}:${HOME_PROXMOX_SERVER_PORT}"
-                    ping: "${HOME_PROXMOX_SERVER_01}"
+                    href: "${INFRA_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
+                    ping: "${INFRA_PROXMOX_SERVER_01}"
                     descrption: Proxmox GUI
                     widget:
                         type: proxmox
-                        url: "${HOME_PROXMOX_SERVER_01}:${HOME_PROXMOX_SERVER_PORT}"
-                        username: "${HOME_PROXMOX_USER}"
-                        password: "${HOME_PROXMOX_APIKEY}"
+                        url: "${HOME_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
+                        username: "${INFRA_PROXMOX_USER}"
+                        password: "${INFRA_PROXMOX_APIKEY}"
                         node: proxmox01
                 - Proxmox02 (TalosWorker01):
                     icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${HOME_PROXMOX_SERVER_02}:${HOME_PROXMOX_SERVER_PORT}"
-                    ping: "${HOME_PROXMOX_SERVER_02}"
+                    href: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
+                    ping: "${INFRA_PROXMOX_SERVER_02}"
                     descrption: Proxmox GUI
                     widget:
                         type: proxmox
-                        url: "${HOME_PROXMOX_SERVER_02}:${HOME_PROXMOX_SERVER_PORT}"
-                        username: "${HOME_PROXMOX_USER}"
-                        password: "${HOME_PROXMOX_APIKEY}"
+                        url: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
+                        username: "${INFRA_PROXMOX_USER}"
+                        password: "${INFRA_PROXMOX_APIKEY}"
                         node: proxmox02
                 - Proxmox03 (TalosWorker02):
                     icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${HOME_PROXMOX_SERVER_03}:${HOME_PROXMOX_SERVER_PORT}"
-                    ping: "${HOME_PROXMOX_SERVER_03}"
+                    href: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
+                    ping: "${INFRA_PROXMOX_SERVER_03}"
                     descrption: Proxmox GUI
                     widget:
                         type: proxmox
-                        url: "${HOME_PROXMOX_SERVER_03}:${HOME_PROXMOX_SERVER_PORT}"
-                        username: "${HOME_PROXMOX_USER}"
-                        password: "${HOME_PROXMOX_APIKEY}"
+                        url: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
+                        username: "${INFRA_PROXMOX_USER}"
+                        password: "${INFRA_PROXMOX_APIKEY}"
                         node: proxmox03
             
                 - TrueNAS scale:
                     icon: https://tweakers.net/ext/i/2005515460.png
-                    href: "${HOME_TRUENAS_GUI}"
-                    ping: "${HOME_TRUENAS_URL}"
+                    href: "${INFRA_TRUENAS_GUI}"
+                    ping: "${INFRA_TRUENAS_URL}"
                     description: TrueNAS scale
                     widget:
                         type: truenas
-                        url: "${HOME_TRUENAS_GUI}"
-                        key:  # not required if using username / password
+                        url: "${INFRA_TRUENAS_GUI}"
+                        key:  "${INFRA_TRUENAS_APIKEY}"# not required if using username / password
                         enablePools: true # optional, defaults to false
                         nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
             
                 - DreamMaschinePro:
                     icon: https://static-00.iconduck.com/assets.00/ubiquiti-icon-2048x2048-6s2pllvk.png
                     href: https://unifi.ui.com/
-                    ping: "${HOME_UNIFI_URL}"
+                    ping: "${INFRA_UNIFI_URL}"
                     description: Unifi DreamMaschine Pro
                     widget:
                         type: unifi
-                        url: "${HOME_UNIFI_URL}"
-                        username: "${HOME_UNIFI_USER}"
-                        password: "${HOME_UNIFI_PASS}"
+                        url: "${INFRA_UNIFI_URL}"
+                        username: "${INFRA_UNIFI_USER}"
+                        password: "${INFRA_UNIFI_PASS}"
                         site:  # optional
             
                 - PiHole:
                     icon: https://static-00.iconduck.com/assets.00/pihole-icon-349x512-0hhcppg7.png
-                    href: "${HOME_PIHOLE_URL}"
-                    ping: "${HOME_PIHOLE_URL}"
+                    href: "${APP_PIHOLE_URL}"
+                    ping: "${APP_PIHOLE_URL}"
                     description: PiHole
                     widget:
                         type: pihole
-                        url: "${HOME_PIHOLE_URL}"
+                        url: "${APP_PIHOLE_URL}"
                         version: 5 # required if running v6 or higher, defaults to 5
-                        key: "${HOME_PIHOLE_APIKEY}"
+                        key: "${APP_PIHOLE_APIKEY}"
             
                 - Nginx Proxy Manager:
                     icon: https://i0.wp.com/www.sismonda.com.ar/wp-content/uploads/2021/04/icon.png?resize=192%2C192
-                    href: "${HOME_NPM_URL}/"
-                    ping: "${HOME_NPM_URL}"
+                    href: "${APP_NPM_URL}/"
+                    ping: "${APP_NPM_URL}"
                     description: Nginx Proxy Manager 
                     widget:
                         type: npm
-                        url: "${HOME_NPM_URL}"
-                        username: "${HOME_NPM_USER}"
-                        password: "${HOME_NPM_PASS}"
+                        url: "${APP_NPM_URL}"
+                        username: "${APP_NPM_USER}"
+                        password: "${APP_NPM_PASS}"
             
                 - Portainer:
                     icon: https://getumbrel.github.io/umbrel-apps-gallery/portainer/icon.svg
-                    href: "${HOME_PORTAINER_URL}/"
-                    ping: "${HOME_PORTAINER_URL}"
+                    href: "${APP_PORTAINER_URL}/"
+                    ping: "${APP_PORTAINER_URL}"
                     description: Docker Management
                     widget:
                         type: portainer
-                        url: "${HOME_PORTAINER_URL}"
+                        url: "${APP_PORTAINER_URL}"
                         env: 3
-                        key: "${HOME_PORTAINER_APIKEY}"
+                        key: "${APP_PORTAINER_APIKEY}"
             
                 - PfSense MadClusterNet:
                     icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTshC_syOD3OwilzZKDd0hKUDoEO5tcotTcyw&s
