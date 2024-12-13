@@ -85,7 +85,7 @@ spec:
               - websecure
           certManager:
             enabled: true
-            certificateIssuer: domain-0-le-prod
+            certificateIssuer: cloudflare
         hosts:
           - host: "${APP_TANDOOR_URL}"
             paths:
