@@ -240,54 +240,61 @@ spec:
                     description: Magneton ATV controller
             
             - Kubernetes Apps:
+              - Kubernetes Dashboard:
+                  icon: https://cdn.prod.website-files.com/64196dbe03e13c204de1b1c8/64773fb48f17ddf642943380_80-image-5.png
+                  href: "${APP_KUBEDASHBOARD_URL}"
+                  description: Kubernetes Dashboard
+                  namespace: kubernetes-dashboard # The kubernetes namespace the app resides in
+                  app: kubernetes-dashboard # The name of the deployed app
+            
               - Tandoor Recipe:
-                    icon: https://static-00.iconduck.com/assets.00/tandoor-icon-2048x2048-brlhbsbz.png
-                    href: "${APP_TANDOOR_URL}"
-                    description: Rezept Sammlung
-                    #namespace: tandoor-recipes # The kubernetes namespace the app resides in
-                    #app: tandoor-recipes # The name of the deployed app
-                    widget:
-                        type: tandoor
-                        url: "${APP_TANDOOR_URL}"
-                        key: "${APP_TANDOOR_APIKEY}"
+                  icon: https://static-00.iconduck.com/assets.00/tandoor-icon-2048x2048-brlhbsbz.png
+                  href: "${APP_TANDOOR_URL}"
+                  description: Rezept Sammlung
+                  namespace: tandoor-recipes # The kubernetes namespace the app resides in
+                  app: tandoor-recipes # The name of the deployed app
+                  widget:
+                      type: tandoor
+                      url: "${APP_TANDOOR_URL}"
+                      key: "${APP_TANDOOR_APIKEY}"
             
             
             - Infrastructure:
-                - Proxmox01 (GhostVM01, GhostVM02):
-                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${INFRA_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
-                    ping: "${INFRA_PROXMOX_SERVER_01}"
-                    descrption: Proxmox GUI
-                    widget:
-                        type: proxmox
-                        url: "${HOME_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
-                        username: "${INFRA_PROXMOX_USER}"
-                        password: "${INFRA_PROXMOX_APIKEY}"
-                        node: proxmox01
-                - Proxmox02 (TalosWorker01):
-                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
-                    ping: "${INFRA_PROXMOX_SERVER_02}"
-                    descrption: Proxmox GUI
-                    widget:
-                        type: proxmox
-                        url: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
-                        username: "${INFRA_PROXMOX_USER}"
-                        password: "${INFRA_PROXMOX_APIKEY}"
-                        node: proxmox02
-                - Proxmox03 (TalosWorker02):
-                    icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
-                    href: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
-                    ping: "${INFRA_PROXMOX_SERVER_03}"
-                    descrption: Proxmox GUI
-                    widget:
-                        type: proxmox
-                        url: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
-                        username: "${INFRA_PROXMOX_USER}"
-                        password: "${INFRA_PROXMOX_APIKEY}"
-                        node: proxmox03
+              - Proxmox01 (GhostVM01, GhostVM02):
+                  icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                  href: "${INFRA_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
+                  ping: "${INFRA_PROXMOX_SERVER_01}"
+                  descrption: Proxmox GUI
+                  widget:
+                      type: proxmox
+                      url: "${HOME_PROXMOX_SERVER_01}:${INFRA_PROXMOX_SERVER_PORT}"
+                      username: "${INFRA_PROXMOX_USER}"
+                      password: "${INFRA_PROXMOX_APIKEY}"
+                      node: proxmox01
+              - Proxmox02 (TalosWorker01):
+                  icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                  href: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
+                  ping: "${INFRA_PROXMOX_SERVER_02}"
+                  descrption: Proxmox GUI
+                  widget:
+                      type: proxmox
+                      url: "${INFRA_PROXMOX_SERVER_02}:${INFRA_PROXMOX_SERVER_PORT}"
+                      username: "${INFRA_PROXMOX_USER}"
+                      password: "${INFRA_PROXMOX_APIKEY}"
+                      node: proxmox02
+              - Proxmox03 (TalosWorker02):
+                  icon: https://cdn02.plentymarkets.com/269f2q1olluv/item/images/130917/full/proxmox-logo-stacked-color.png
+                  href: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
+                  ping: "${INFRA_PROXMOX_SERVER_03}"
+                  descrption: Proxmox GUI
+                  widget:
+                      type: proxmox
+                      url: "${INFRA_PROXMOX_SERVER_03}:${INFRA_PROXMOX_SERVER_PORT}"
+                      username: "${INFRA_PROXMOX_USER}"
+                      password: "${INFRA_PROXMOX_APIKEY}"
+                      node: proxmox03
             
-                - TrueNAS scale:
+              - TrueNAS scale:
                     icon: https://tweakers.net/ext/i/2005515460.png
                     href: "${INFRA_TRUENAS_GUI}"
                     ping: "${INFRA_TRUENAS_URL}"
