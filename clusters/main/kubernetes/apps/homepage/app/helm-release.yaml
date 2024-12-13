@@ -242,7 +242,7 @@ spec:
             - Kubernetes Apps:
               - Kubernetes Dashboard:
                   icon: https://cdn.prod.website-files.com/64196dbe03e13c204de1b1c8/64773fb48f17ddf642943380_80-image-5.png
-                  href: "${APP_KUBEDASHBOARD_URL}"
+                  href: "http://${DASHBOARD_IP}/"
                   description: Kubernetes Dashboard
                   namespace: kubernetes-dashboard # The kubernetes namespace the app resides in
                   app: kubernetes-dashboard # The name of the deployed app
