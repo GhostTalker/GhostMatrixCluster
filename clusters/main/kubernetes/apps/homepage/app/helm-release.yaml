@@ -306,7 +306,7 @@ spec:
                         enablePools: true # optional, defaults to false
                         nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
             
-                - DreamMaschinePro:
+              - DreamMaschinePro:
                     icon: https://static-00.iconduck.com/assets.00/ubiquiti-icon-2048x2048-6s2pllvk.png
                     href: https://unifi.ui.com/
                     ping: "${INFRA_UNIFI_URL}"
@@ -318,7 +318,7 @@ spec:
                         password: "${INFRA_UNIFI_PASS}"
                         site:  # optional
             
-                - PiHole:
+              - PiHole:
                     icon: https://static-00.iconduck.com/assets.00/pihole-icon-349x512-0hhcppg7.png
                     href: "${APP_PIHOLE_URL}"
                     ping: "${APP_PIHOLE_URL}"
@@ -329,7 +329,7 @@ spec:
                         version: 5 # required if running v6 or higher, defaults to 5
                         key: "${APP_PIHOLE_APIKEY}"
             
-                - Nginx Proxy Manager:
+              - Nginx Proxy Manager:
                     icon: https://i0.wp.com/www.sismonda.com.ar/wp-content/uploads/2021/04/icon.png?resize=192%2C192
                     href: "${APP_NPM_URL}/"
                     ping: "${APP_NPM_URL}"
@@ -340,7 +340,7 @@ spec:
                         username: "${APP_NPM_USER}"
                         password: "${APP_NPM_PASS}"
             
-                - Portainer:
+              - Portainer:
                     icon: https://getumbrel.github.io/umbrel-apps-gallery/portainer/icon.svg
                     href: "${APP_PORTAINER_URL}/"
                     ping: "${APP_PORTAINER_URL}"
@@ -351,7 +351,7 @@ spec:
                         env: 3
                         key: "${APP_PORTAINER_APIKEY}"
             
-                - PfSense MadClusterNet:
+              - PfSense MadClusterNet:
                     icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTshC_syOD3OwilzZKDd0hKUDoEO5tcotTcyw&s
                     href: "${MC_PFSENSE_URL}/"
                     ping: "${MC_PFSENSE_URL}"
