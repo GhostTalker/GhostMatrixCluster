@@ -68,7 +68,7 @@ spec:
               - websecure
           certManager:
             enabled: true
-            certificateIssuer: domain-0-le-prod
+            certificateIssuer: domain-0-le-staging
         hosts:
           - host: homepage.ghostmatrix.me
             paths:
