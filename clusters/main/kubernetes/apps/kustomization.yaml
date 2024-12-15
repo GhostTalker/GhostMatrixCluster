@@ -5,3 +5,12 @@ resources:
   - homepage/ks.yaml
   - tandoor-recipes/ks.yaml
   - unpoller/ks.yaml
+  - prometheus/ks.yaml
+  - grafana/ks.yaml
+  - grafana-image-renderer/ks.yaml
+  #- anything-llm/ks.yaml
+  - semaphore/ks.yaml
+  - pingvin-share/ks.yaml
+  #- truecommand/ks.yaml
+  #- truenas-exporter/ks.yaml
+  - peanut/ks.yaml
