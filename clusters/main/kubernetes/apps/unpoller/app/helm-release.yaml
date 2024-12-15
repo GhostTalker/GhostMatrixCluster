@@ -39,3 +39,7 @@ spec:
                 UP_UNIFI_DEFAULT_URL: "${INFRA_UNIFI_URL}"
                 UP_UNIFI_DEFAULT_USER: "${INFRA_UNIFI_USER}"
                 UP_UNIFI_DEFAULT_PASS: "${INFRA_UNIFI_PASS}"
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: 10.1.0.114
