@@ -4,4 +4,4 @@ resources:
   - kubernetes-dashboard/ks.yaml
   - homepage/ks.yaml
   - tandoor-recipes/ks.yaml
-  - unpoller
+  - unpoller/ks.yaml
