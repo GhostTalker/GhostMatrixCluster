@@ -258,6 +258,19 @@ spec:
                       url: "${APP_TANDOOR_URL}"
                       key: "${APP_TANDOOR_APIKEY}"
             
+              - pingvin-share:
+                  icon: https://cdn.prod.website-files.com/64196dbe03e13c204de1b1c8/64773fb48f17ddf642943380_80-image-5.png
+                  href: "https://share.${DOMAIN_0}"
+                  description: Fileshare Plattform
+                  namespace: pingvin-share # The kubernetes namespace the app resides in
+                  app: pingvin-share # The name of the deployed app
+            
+              - semaphore:
+                  icon: https://blog.netways.de/wp-content/uploads/2023/07/ansible-semaphore-blogheader.png
+                  href: "https://semaphore.${DOMAIN_0}"
+                  description: Fileshare Plattform
+                  namespace: semaphore # The kubernetes namespace the app resides in
+                  app: semaphore # The name of the deployed app
             
             - Infrastructure:
               - Proxmox01 (GhostVM01, GhostVM02):
