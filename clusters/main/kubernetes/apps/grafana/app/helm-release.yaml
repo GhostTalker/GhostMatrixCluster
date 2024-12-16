@@ -95,7 +95,7 @@ spec:
           - credentials: s3
             dest:
               enabled: true
-              name: data
+            name: data
             src:
               enabled: true
               type: restic
