@@ -51,3 +51,7 @@ spec:
         tls:
           - hosts:
               - peanut.${DOMAIN_0}
+      service:
+        main:
+          type: LoadBalancer
+          loadBalancerIP: 10.1.0.116
