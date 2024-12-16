@@ -29,12 +29,18 @@ spec:
   uninstall:
     keepHistory: false
   values:
-
     service:
       main:
         type: LoadBalancer
         loadBalancerIP: 10.1.0.115
-
+    credentials:
+      s3:
+        type: s3
+        url: "${S3URL}"
+        bucket: "${S3PREFIX}-tandoor-recipes"
+        accessKey: "${S3ID}"
+        secretKey: "${S3KEY}"
+        encrKey: "${S3KEY}"
     persistence:
       config:
         enabled: true
