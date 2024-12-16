@@ -98,7 +98,7 @@ spec:
             name: data
             src:
               enabled: true
-              type: restic
+            type: restic
 
     workload:
       main:
