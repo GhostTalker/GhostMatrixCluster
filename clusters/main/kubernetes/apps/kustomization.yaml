@@ -13,4 +13,4 @@ resources:
   - pingvin-share/ks.yaml
   #- truecommand/ks.yaml
   #- truenas-exporter/ks.yaml
-  - peanut/ks.yaml
+  #- peanut/ks.yaml
