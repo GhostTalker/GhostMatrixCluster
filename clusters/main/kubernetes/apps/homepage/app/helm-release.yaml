@@ -268,7 +268,7 @@ spec:
               - semaphore:
                   icon: https://blog.netways.de/wp-content/uploads/2023/07/ansible-semaphore-blogheader.png
                   href: "https://semaphore.${DOMAIN_0}"
-                  description: Fileshare Plattform
+                  description: Ansible Tower
                   namespace: semaphore # The kubernetes namespace the app resides in
                   app: semaphore # The name of the deployed app
             
