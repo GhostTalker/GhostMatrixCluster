@@ -55,7 +55,7 @@ spec:
       s3:
         type: s3
         url: "${S3URL}"
-        bucket: "${S3PREFIX}-tandoor-recipes"
+        bucket: "${S3PREFIX}-pingvin-share"
         accessKey: "${S3ID}"
         secretKey: "${S3KEY}"
         encrKey: "${S3KEY}"
