@@ -14,3 +14,4 @@ resources:
   #- truecommand/ks.yaml
   #- truenas-exporter/ks.yaml
   #- peanut/ks.yaml
+  - hass/ks.yaml
