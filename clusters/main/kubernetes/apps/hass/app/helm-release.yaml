@@ -44,33 +44,34 @@ spec:
         - 172.17.0.0/16
         - 10.1.0.0/24
         - 192.168.254.0/24
-        ingress:
-          main:
-            enabled: true
-            hosts:
-              - host: hass.${DOMAIN_0}
-                paths:
-                  - path: /
-                    pathType: Prefix
-            integrations:
-              certManager:
-                certificateIssuer: domain-0-le-prod
-                enabled: true
-              homepage:
-                description: ""
-                enabled: true
-                group: Apps
-                icon: ""
-                name: ""
-                widget:
-                  custom:
-                    key: ""
-                  enabled: false
-              traefik:
-                allowCors: false
-                enabled: true
-                entrypoints:
-                  - websecure
+
+    ingress:
+       main:
+         enabled: true
+         hosts:
+           - host: hass.${DOMAIN_0}
+             paths:
+               - path: /
+                 pathType: Prefix
+         integrations:
+           certManager:
+             certificateIssuer: domain-0-le-prod
+             enabled: true
+           homepage:
+             description: ""
+             enabled: true
+             group: Apps
+             icon: ""
+             name: ""
+             widget:
+               custom:
+                 key: ""
+               enabled: false
+           traefik:
+             allowCors: false
+             enabled: true
+             entrypoints:
+               - websecure
 
     persistence:
       config:
