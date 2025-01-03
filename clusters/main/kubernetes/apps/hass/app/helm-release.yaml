@@ -29,6 +29,18 @@ spec:
   uninstall:
     keepHistory: false
   values:
+
+    service:
+      main:
+        loadBalancerIP: 10.1.0.116
+        type: LoadBalancer
+        ports:
+          colot:
+            enabled: true
+            protocol: udp
+            port: 5683
+            targetPort: 5683
+
     credentials:
       s3:
         type: s3
@@ -46,32 +58,24 @@ spec:
         - 192.168.254.0/24
 
     ingress:
-       main:
-         enabled: true
-         hosts:
-           - host: hass.${DOMAIN_0}
-             paths:
-               - path: /
-                 pathType: Prefix
-         integrations:
-           certManager:
-             certificateIssuer: domain-0-le-prod
-             enabled: true
-           homepage:
-             description: ""
-             enabled: true
-             group: Apps
-             icon: ""
-             name: ""
-             widget:
-               custom:
-                 key: ""
-               enabled: false
-           traefik:
-             allowCors: false
-             enabled: true
-             entrypoints:
-               - websecure
+      main:
+        enabled: true
+        integrations:
+          traefik:
+            enabled: true
+            middlewares:
+              - name: local
+                namespace: traefik
+              - name: bouncer
+                namespace: traefik
+          certManager:
+            enabled: true
+            certificateIssuer: domain-0-le-prod
+        hosts:
+          - host: hass.${DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix
 
     persistence:
       config:
