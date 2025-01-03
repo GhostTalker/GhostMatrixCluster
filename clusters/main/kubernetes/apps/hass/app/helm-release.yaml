@@ -65,6 +65,8 @@ spec:
                 namespace: traefik
               - name: bouncer
                 namespace: traefik
+            entrypoints:
+              - websecure
           certManager:
             enabled: true
             certificateIssuer: domain-0-le-prod
@@ -73,6 +75,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+        tls:
+          - hosts:
+              - hass.${DOMAIN_0}
 
     persistence:
       config:
