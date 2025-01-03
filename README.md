@@ -4,9 +4,9 @@ This repository manages my Kubernetes cluster Powered by TrueCharts ClusterTool 
 All applications are installed and configured via the [Helm TrueCharts](https://truecharts.org/).  
 
 Below you will find an overview of the main components in my cluster, as well as a table of contents with brief descriptions of the included apps and services.
-
+ 
 ---
-
+ 
 ## Table of Contents
 
 1. [Overview & Architecture](#overview--architecture)
@@ -39,7 +39,9 @@ Below you will find an overview of the main components in my cluster, as well as
 5. [Further Links](#further-links)
 6. [License](#license)
 
+ 
 ---
+
 
 ## Overview & Architecture
 
@@ -74,7 +76,9 @@ Key architecture highlights:
 5. Encrypt Configuration
 6. Apply Talos/Clusterconfig to the Kubernetes Nodes
 
+ 
 ---
+ 
 
 ## Apps and Services
 
@@ -176,8 +180,10 @@ Below is a list of the primary applications and add-ons running in this cluster.
 - **snapshot-controller**: Facilitates volume snapshots.
 - **Others**: `kubelet-csr-approver`, `metrics-server`, etc.
 
+ 
 ---
 
+ 
 ## Usage
 
 1. **Make changes**  
@@ -192,7 +198,9 @@ Below is a list of the primary applications and add-ons running in this cluster.
 4. **Scaling & Updates**  
    With GitOps (Flux), rollbacks and updates are straightforward; simply revert or update versions in Git.
 
+ 
 ---
+ 
 
 ## Further Links
 
@@ -201,8 +209,10 @@ Below is a list of the primary applications and add-ons running in this cluster.
 - [Kubernetes Official Documentation](https://kubernetes.io/docs/home/)
 - [Renovate](https://github.com/apps/renovate)
 
+ 
 ---
 
+ 
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
