@@ -65,8 +65,6 @@ spec:
             icon: ""
             name: ""
             widget:
-              custom:
-                key: ""
               enabled: false
 
     cnpg:
