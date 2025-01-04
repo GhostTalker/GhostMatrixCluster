@@ -65,7 +65,7 @@ spec:
             icon: ""
             name: ""
             widget:
-              enabled: false
+              enabled: true
               type: grafana
               url: "https://grafana.${DOMAIN_0}"
               username: "admin"
