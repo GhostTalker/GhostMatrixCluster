@@ -61,7 +61,7 @@ spec:
           homepage:
             description: ""
             enabled: true
-            group: Apps
+            group: "Kubernetes Apps"
             icon: ""
             name: ""
             widget:
