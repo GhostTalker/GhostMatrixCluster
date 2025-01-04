@@ -47,6 +47,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+        tls:
+          - hosts:
+              - homebridge.${DOMAIN_0}
         integrations:
           certManager:
             certificateIssuer: domain-0-le-prod
