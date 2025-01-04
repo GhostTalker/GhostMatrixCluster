@@ -15,3 +15,4 @@ resources:
   #- truenas-exporter/ks.yaml
   #- peanut/ks.yaml
   - hass/ks.yaml
+  - homebridge/ks.yaml
