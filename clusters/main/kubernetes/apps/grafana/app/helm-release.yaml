@@ -59,7 +59,7 @@ spec:
             enabled: true
             certificateIssuer: domain-0-le-prod
           homepage:
-            description: ""
+            description: "Grafana is an open source, feature rich metrics dashboard and graph editor for Prometheus"
             enabled: true
             group: "Kubernetes Apps"
             icon: ""
