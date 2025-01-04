@@ -66,6 +66,10 @@ spec:
             name: ""
             widget:
               enabled: false
+              type: grafana
+              url: "https://grafana.${DOMAIN_0}"
+              username: "admin"
+              password: ${MONITORING_GRAFANA_ADMIN_PASSWORD}
 
     cnpg:
       main:
