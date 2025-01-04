@@ -58,6 +58,17 @@ spec:
           certManager:
             enabled: true
             certificateIssuer: domain-0-le-prod
+          homepage:
+            description: ""
+            enabled: true
+            group: "Kubernetes Apps"
+            icon: ""
+            name: ""
+            widget:
+              custom:
+                key: ""
+              enabled: false
+
     cnpg:
       main:
         #mode: recovery

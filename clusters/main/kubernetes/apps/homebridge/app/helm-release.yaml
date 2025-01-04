@@ -51,6 +51,10 @@ spec:
           certManager:
             certificateIssuer: domain-0-le-prod
             enabled: true
+          traefik:
+            enabled: true
+            entrypoints:
+              - websecure
           homepage:
             description: ""
             enabled: true
@@ -61,11 +65,6 @@ spec:
               custom:
                 key: ""
               enabled: false
-          traefik:
-            allowCors: false
-            enabled: true
-            entrypoints:
-              - websecure
 
     persistence:
       config:
