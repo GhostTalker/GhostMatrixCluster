@@ -21,8 +21,6 @@ spec:
     mode: warn
   install:
     createNamespace: true
-    strategy:
-      type: Recreate
     remediation:
       retries: 3
   upgrade:
